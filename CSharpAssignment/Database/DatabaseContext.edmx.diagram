@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="d815eed3ad0644bda2b75dfc2b0af3eb" Name="Diagram1" ZoomLevel="82">
+        <EntityTypeShape EntityType="CSharpAssignmentModel.Address" Width="1.5" PointX="8.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CSharpAssignmentModel.City" Width="1.5" PointX="4.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CSharpAssignmentModel.Country" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CSharpAssignmentModel.Customer" Width="1.5" PointX="6.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CSharpAssignmentModel.State" Width="1.5" PointX="2.875" PointY="1.125" IsExpanded="true" />
+        <AssociationConnector Association="CSharpAssignmentModel.FK__Address__Custome__45F365D3" ManuallyRouted="false" />
+        <AssociationConnector Association="CSharpAssignmentModel.FK__City__StateId__3E52440B" ManuallyRouted="false" />
+        <AssociationConnector Association="CSharpAssignmentModel.FK__State__CountryId__3A81B327" ManuallyRouted="false" />
+        <AssociationConnector Association="CSharpAssignmentModel.FK__Customer__CityId__48CFD27E" ManuallyRouted="false" >
+        </AssociationConnector>
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
