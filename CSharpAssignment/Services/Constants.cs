@@ -4,10 +4,9 @@ using System.Linq;
 using System.Web;
 
 namespace CSharpAssignment.Models.Data {
-    public class Constants {
+    public static class Constants {
 
-        public const string ErrorMessageForRequiredField = "This Field Is Required";
-
+        public const String ErrorMessageForRequiredField = "This Field Is Required";
 
     }
 }
