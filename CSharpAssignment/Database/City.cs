@@ -24,7 +24,7 @@ namespace CSharpAssignment.Database
         public string Name { get; set; }
         public Nullable<int> StateId { get; set; }
         public System.DateTime CreatedDate { get; set; }
-        public System.DateTime UpdateDate { get; set; }
+        public Nullable<System.DateTime> UpdateDate { get; set; }
     
         public virtual State State { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

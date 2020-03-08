@@ -5,7 +5,7 @@ using System.Linq;
 using System.Web;
 
 namespace CSharpAssignment.Models.Data {
-    public class CustomerAddress { 
+    public class CustomerAddressModel { 
 
         public int AddressId { get; set; }
 

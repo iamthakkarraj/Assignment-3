@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 
 namespace CSharpAssignment.Models.Data {
-    public class Country {
+    public class CountryModel {
 
         public int CountryId { get; set; }
         public string Name { get; set; }        

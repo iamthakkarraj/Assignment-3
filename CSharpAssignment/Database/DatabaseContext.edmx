@@ -21,7 +21,7 @@
           <Property Name="Name" Type="nvarchar" MaxLength="56" />
           <Property Name="StateId" Type="int" />
           <Property Name="CreatedDate" Type="datetime" Nullable="false" />
-          <Property Name="UpdateDate" Type="datetime" Nullable="false" />
+          <Property Name="UpdateDate" Type="datetime" />
         </EntityType>
         <EntityType Name="Country">
           <Key>
@@ -30,7 +30,7 @@
           <Property Name="CountryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="56" />
           <Property Name="CreatedDate" Type="datetime" Nullable="false" />
-          <Property Name="UpdateDate" Type="datetime" Nullable="false" />
+          <Property Name="UpdateDate" Type="datetime" />
         </EntityType>
         <EntityType Name="Customer">
           <Key>
@@ -54,9 +54,9 @@
           <Property Name="Name" Type="nvarchar" MaxLength="56" />
           <Property Name="CountryId" Type="int" />
           <Property Name="CreatedDate" Type="datetime" Nullable="false" />
-          <Property Name="UpdateDate" Type="datetime" Nullable="false" />
+          <Property Name="UpdateDate" Type="datetime" />
         </EntityType>
-        <Association Name="FK__Address__Custome__4D94879B">
+        <Association Name="FK__Address__Custome__46E78A0C">
           <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
           <End Role="Address" Type="Self.Address" Multiplicity="*" />
           <ReferentialConstraint>
@@ -80,7 +80,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Customer__CityId__48CFD27E">
+        <Association Name="FK__Customer__CityId__4222D4EF">
           <End Role="City" Type="Self.City" Multiplicity="0..1" />
           <End Role="Customer" Type="Self.Customer" Multiplicity="*" />
           <ReferentialConstraint>
@@ -110,7 +110,7 @@
           <EntitySet Name="Country" EntityType="Self.Country" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="State" EntityType="Self.State" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__Address__Custome__4D94879B" Association="Self.FK__Address__Custome__4D94879B">
+          <AssociationSet Name="FK__Address__Custome__46E78A0C" Association="Self.FK__Address__Custome__46E78A0C">
             <End Role="Customer" EntitySet="Customer" />
             <End Role="Address" EntitySet="Address" />
           </AssociationSet>
@@ -118,7 +118,7 @@
             <End Role="State" EntitySet="State" />
             <End Role="City" EntitySet="City" />
           </AssociationSet>
-          <AssociationSet Name="FK__Customer__CityId__48CFD27E" Association="Self.FK__Customer__CityId__48CFD27E">
+          <AssociationSet Name="FK__Customer__CityId__4222D4EF" Association="Self.FK__Customer__CityId__4222D4EF">
             <End Role="City" EntitySet="City" />
             <End Role="Customer" EntitySet="Customer" />
           </AssociationSet>
@@ -148,7 +148,7 @@
           <Property Name="Name" Type="String" MaxLength="56" FixedLength="false" Unicode="true" />
           <Property Name="StateId" Type="Int32" />
           <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="UpdateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="3" />
           <NavigationProperty Name="State" Relationship="Self.FK__City__StateId__3E52440B" FromRole="City" ToRole="State" />
           <NavigationProperty Name="Customers" Relationship="CSharpAssignmentModel.FK__Customer__CityId__48CFD27E" FromRole="City" ToRole="Customer" />
         </EntityType>
@@ -159,7 +159,7 @@
           <Property Name="CountryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="56" FixedLength="false" Unicode="true" />
           <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="UpdateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="3" />
           <NavigationProperty Name="States" Relationship="Self.FK__State__CountryId__3A81B327" FromRole="Country" ToRole="State" />
         </EntityType>
         <EntityType Name="Customer">
@@ -186,7 +186,7 @@
           <Property Name="Name" Type="String" MaxLength="56" FixedLength="false" Unicode="true" />
           <Property Name="CountryId" Type="Int32" />
           <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="UpdateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Cities" Relationship="Self.FK__City__StateId__3E52440B" FromRole="State" ToRole="City" />
           <NavigationProperty Name="Country" Relationship="Self.FK__State__CountryId__3A81B327" FromRole="State" ToRole="Country" />
         </EntityType>

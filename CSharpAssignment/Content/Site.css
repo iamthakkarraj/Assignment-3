@@ -1,6 +1,12 @@
-﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+﻿body,html {
+    padding: 0px;    
+    margin:0px;
+}
+
+.navbar-brand svg{
+    fill:whitesmoke;
+    width:32px;
+    height:32px;
 }
 
 /* Set padding to keep content from hitting the edges */

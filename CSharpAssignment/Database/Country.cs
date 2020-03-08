@@ -23,7 +23,7 @@ namespace CSharpAssignment.Database
         public int CountryId { get; set; }
         public string Name { get; set; }
         public System.DateTime CreatedDate { get; set; }
-        public System.DateTime UpdateDate { get; set; }
+        public Nullable<System.DateTime> UpdateDate { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<State> States { get; set; }
