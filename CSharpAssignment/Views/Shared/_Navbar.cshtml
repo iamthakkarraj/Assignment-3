@@ -2,17 +2,20 @@
 @{
     ViewBag.Title = "_Navbar";
 }
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
 
     <section class="container">
 
-        <span class="row">
-            <a class="navbar-brand" href="#">
-                <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                     viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
-                <circle cx="224" cy="138.667" r="32" />
+        @*Nav Bar Logo*@ 
+        <a class="navbar-brand" href="#"><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                 viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
 
-                <path d="M437.333,245.333c5.896,0,10.667-4.771,10.667-10.667V192h32c5.896,0,10.667-4.771,10.667-10.667v-42.667
+            <circle cx="224" cy="138.667" r="32" />
+
+
+
+            <path d="M437.333,245.333c5.896,0,10.667-4.771,10.667-10.667V192h32c5.896,0,10.667-4.771,10.667-10.667v-42.667
 				                    c0-5.896-4.771-10.667-10.667-10.667h-53.333V85.333h15.5c4.406,0,8.354-2.708,9.948-6.823c1.594-4.104,0.49-8.771-2.771-11.729
 				                    C402,23.719,340.917,0,277.333,0c-141.156,0-256,114.844-256,256s114.844,256,256,256c63.583,0,124.667-23.719,172.01-66.781
 				                    c3.26-2.958,4.365-7.625,2.771-11.729c-1.594-4.115-5.542-6.823-9.948-6.823h-15.5v-21.333H480
@@ -28,21 +31,36 @@
 				                    c5.896,0,10.667,4.771,10.667,10.667c0,5.896-4.771,10.667-10.667,10.667h-96c-5.896,0-10.667-4.771-10.667-10.667
 				                    C74.667,303.438,79.438,298.667,85.333,298.667z" />
 
-            </svg> Deathstar
-            </a>
-        </span>
 
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+
+            </svg> Deathstar </a>
+
+        @*Toggle Button*@
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#death-star-navbar" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarColor01">
+        @*Nav Links Starts From Here*@
+        <div class="collapse navbar-collapse" id="death-star-navbar">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item active">
                     <a href="/Home/Index" class="nav-link">Home</a>
-                </li>                
+                </li>
+                <li class="nav-item active">
+                    <a href="/Customers/Index" class="nav-link">Customers</a>
+                </li>
+                <li class="nav-item active">
+                    <a href="/Admin/Cities/Index" class="nav-link">Cities</a>
+                </li>
+                <li class="nav-item active">
+                    <a href="/Admin/States/Index" class="nav-link">States</a>
+                </li>
+                <li class="nav-item active">
+                    <a href="/Admin/Countries/Index" class="nav-link">Countries</a>
+                </li>
             </ul>
         </div>
+        @*Nav Links Ends Here*@
 
     </section>
 

@@ -1,18 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using PagedList;
 using System.Web.Mvc;
 using CSharpAssignment.Services;
 using CSharpAssignment.Models.Data;
-using PagedList;
+using System;
 
 namespace CSharpAssignment.Controllers {
-    public class CustomerController : Controller {
+    public class CustomersController : Controller {
 
         private readonly CustomerService CustomerServices;
 
-        public CustomerController() {
+        public CustomersController() {
             CustomerServices = new CustomerService();
         }
 
@@ -28,17 +25,21 @@ namespace CSharpAssignment.Controllers {
 
         // GET: Customer/Create
         public ActionResult Create() {
-            return View();
+            CustomerModel customerModel = new CustomerModel();            
+            customerModel.CreatedDate = DateTime.Today;
+            ViewBag.CountryList = new CountryService().GetCountryDropDownList();
+            return View(customerModel);
         }
 
         // POST: Customer/Create
         [HttpPost]
         public ActionResult Create(CustomerModel customerModel) {
-            try {
-                CustomerServices.AddCustomer(customerModel);
-                return RedirectToAction("Index");
+            CustomerServices.AddCustomer(customerModel);
+            return RedirectToAction("Index");
+            try {                 
             }
-            catch {
+            catch(Exception e) {
+                ViewBag.CountryList = new CountryService().GetCountryDropDownList();                
                 return View();
             }
         }
@@ -77,5 +78,14 @@ namespace CSharpAssignment.Controllers {
                 return View();
             }
         }
+
+        public JsonResult GetStateList(int id) {
+            return Json(new StateService().GetAllStates(id), JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetCityList(int id) {
+            return Json(new CityService().GetAllCities(id), JsonRequestBehavior.AllowGet);
+        }
+
     }
 }

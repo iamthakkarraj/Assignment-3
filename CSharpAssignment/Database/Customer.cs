@@ -24,7 +24,7 @@ namespace CSharpAssignment.Database
         public string Name { get; set; }
         public string EmailId { get; set; }
         public string PhoneNo { get; set; }
-        public System.DateTime DOB { get; set; }
+        public System.DateTime? DOB { get; set; }
         public Nullable<bool> IsActive { get; set; }
         public System.DateTime CreatedDate { get; set; }
         public Nullable<System.DateTime> UpdatedDate { get; set; }

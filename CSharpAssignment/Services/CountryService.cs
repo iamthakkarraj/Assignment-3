@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 using CSharpAssignment.Database;
 using CSharpAssignment.Models.Data;
 
@@ -33,6 +34,25 @@ namespace CSharpAssignment.Services {
 
             return destination;
 
+        }
+
+        public List<SelectListItem> GetCountryDropDownList() {
+
+            //Get All City List From Database
+            List<CountryModel> countryList = GetAllCountries();
+
+            //Create Empty SelectListItem List
+            List<SelectListItem> countryDropDownList = new List<SelectListItem>();
+
+            //Add Each City As A SelectListItem In Drop Down List
+            foreach (CountryModel country in countryList) {
+                countryDropDownList.Add(new SelectListItem() {
+                    Text = country.Name,
+                    Value = country.CountryId.ToString()
+                });
+            }
+
+            return countryDropDownList;
         }
 
     }

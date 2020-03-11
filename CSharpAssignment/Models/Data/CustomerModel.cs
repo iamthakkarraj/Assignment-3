@@ -10,7 +10,7 @@ namespace CSharpAssignment.Models.Data {
         public string Name { get; set; }
         public string EmailId { get; set; }
         public string PhoneNo { get; set; }
-        public System.DateTime DOB { get; set; }
+        public System.DateTime? DOB { get; set; }
 
         [Display(Name = "Status")]
         public Nullable<bool> IsActive { get; set; }
@@ -19,7 +19,7 @@ namespace CSharpAssignment.Models.Data {
         public System.DateTime CreatedDate { get; set; }
 
         [Display(Name = "Updated Date")]
-        public System.DateTime UpdatedDate { get; set; }
+        public Nullable<System.DateTime> UpdatedDate { get; set; }
         public int CityId { get; set; }
     }
 }

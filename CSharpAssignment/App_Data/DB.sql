@@ -66,5 +66,7 @@ INSERT INTO [City] ([Name],[StateId]) VALUES ('Ahmedabad',1),
 												('Agra',2)
 GO
 INSERT INTO Customer VALUES('Raj Thakkar','Iamthakkarraj@gmail.com','9726080715',GETDATE(),2,1,SYSDATETIME(),NULL),
-							('Dev Channiyara','Dev.Channiyara@thegatewaycorp.co.in','0000000000',GETDATE(),2,1,SYSDATETIME(),NULL)
+							('Dev Channiyara','Dev.Channiyara@thegatewaycorp.co.in','0000000000',GETDATE(),2,1,SYSDATETIME(),NULL),
+							('Dev Channiyara','Dev.Channiyara@thegatewaycorp.co.in','0000000000',GETDATE(),2,0,SYSDATETIME(),NULL),							
+							('Raj Thakkar','Iamthakkarraj@gmail.com','9726080715',GETDATE(),2,0,SYSDATETIME(),NULL)
 GO

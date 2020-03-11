@@ -1,153 +1,175 @@
 ﻿@using PagedList.Mvc
 @model  PagedList.IPagedList<CSharpAssignment.Models.Data.CityModel>
 
-
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Cities";
 }
-    <div>
 
-        <div class="d-flex justify-content-between p-3">
+<div>
 
-            <h4 class="pt-3 mt-1">City List</h4>
-            <a href="/Admin/Countries/Create" class="btn btn-primary"><i class="mt-2 material-icons">add</i></a>
-            @*@Html.ActionLink("Create New", "Create", "Country", null, new { @class = "btn btn-primary" })*@
+    @*Page Title*@
+    <div class="d-flex justify-content-between py-4 border-bottom border-danger">
+        <h4 class="my-auto">City List</h4>
+        @*Add Button*@
+        <button style="all:unset;" data-toggle="modal" data-target="#add-modal"><i class="btn-sm btn-warning material-icons">add</i></button>
+    </div>
 
-        </div>
+    @*Table Starts From Here*@
+    <table class="table table-striped" style="width:fit-content;">
 
-        <table class="table table-striped" style="width:fit-content;">
+        @*Table Heading Starts From Here*@
+        <tr>
+            <th class="text-center">@Html.DisplayNameFor(model => model.First().Name)</th>
+            <th class="text-center">Actions</th>
+        </tr>
+        @*Table Heading Ends Here*@
+
+        @foreach (var item in Model) {
 
             <tr>
-
-                <th class="text-center">@Html.DisplayNameFor(model => model.First().Name)</th>
-                <th class="text-center">Actions</th>
-
+                <td class="text-center align-middle">@Html.DisplayFor(modelItem => item.Name)</td>
+                <td>
+                    <button onclick="GetDetails()" style="all:unset;" data-toggle="modal" data-target="#edit-modal"><i class="btn-sm btn-warning material-icons">create</i></button>
+                    <button onclick="GetDetails()" style="all:unset;" data-toggle="modal" data-target="#details-modal"><i class="btn-sm btn-info material-icons">reorder</i></button>
+                    <button onclick="GetDetails()" style="all:unset;" data-toggle="modal" data-target="#delete-modal"><i class="btn-sm btn-danger material-icons">delete</i></button>
+                </td>
             </tr>
+        }
 
-            @foreach (var item in Model) {
+    </table>
+    @*Table Ends Here*@
 
-                <tr>
-
-                    <td class="text-center align-middle">@Html.DisplayFor(modelItem => item.Name)</td>
-
-                    <td>
-
-                        <button onclick="" data-toggle="modal" data-target="#edit-modal" class="btn btn-warning"><i class="mt-2 material-icons">create</i></button>
-                        <button onclick="" data-toggle="modal" data-target="#details-modal" class="btn btn-info"><i class="mt-2 material-icons">reorder</i></button>
-                        <button onclick="" data-toggle="modal" data-target="#delete-modal" class="btn btn-danger"><i class="mt-2 material-icons">delete</i></button>
-
-                        @*<a href="/Admin/Cities/Edit/@item.CityId" class="btn btn-warning"><i class="mt-2 material-icons">create</i></a>
-                        <a href="/Admin/Cities/Details/@item.CityId" class="btn btn-info"><i class="mt-2 material-icons">reorder</i></a>
-                        <a href="/Admin/Cities/Delete/@item.CityId" class="btn btn-danger"><i class="mt-2 material-icons">delete</i></a>*@
-
-                        @*@Html.ActionLink("Edit", "Edit", new { id = item.CountryId }, new { @class = "btn btn-primary" })
-                        @Html.ActionLink("Details", "Details", new { id = item.CountryId }, new { @class = "btn btn-info" })
-                        @Html.ActionLink("Delete", "Delete", new { id = item.CountryId }, new { @class = "btn btn-danger" })*@
-
-                    </td>
-
-                </tr>
-            }
-
-        </table>
-
-        <div class="modal fade" id="edit-modal" tabindex="-1" role="dialog" aria-labelledby="edit-modal-label" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="edit-modal-label">Edit City</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form>
-                            <div class="form-group">
-                                <label for="Name" class="col-form-label">City Name : </label>
-                                <input name="Name" type="text" class="form-control border" id="Name">
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancle</button>
-                        <button type="button" class="btn btn-primary">Add</button>
-                    </div>
+    @*Add Modal Starts From Here*@
+    <div class="modal fade" id="add-modal" tabindex="-1" role="dialog" aria-labelledby="add-modal-label" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="Add-modal-label">Add City</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="Name" class="col-form-label">City Name : </label>
+                            <input name="Name" type="text" class="form-control border" id="Name">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancle</button>
+                    <button type="button" class="btn btn-primary">Add</button>
                 </div>
             </div>
         </div>
-
-        <div class="modal fade" id="details-modal" tabindex="-1" role="dialog" aria-labelledby="details-modal-label" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="details-modal-label">City Details</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form>
-                            <div class="form-group">
-                                <dl class="dl-horizontal">
-                                    <dt>City Id</dt>
-                                    <dd>Whatever</dd>
-                                    <dt>City Name</dt>
-                                    <dd>Whatever</dd>
-                                    <dt>Created Date</dt>
-                                    <dd>Whatever</dd>
-                                    <dt>Update Date</dt>
-                                    <dd>Whatever</dd>
-                                </dl>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="modal fade" id="delete-modal" tabindex="-1" role="dialog" aria-labelledby="delete-modal-label" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header alert alert-danger">
-                        <h5 class="modal-title" id="delete-modal-label">Are you sure you want to delte this city ?</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form>
-                            <div class="form-group">
-                                <dl class="dl-horizontal">
-                                    <dt>City Id</dt>
-                                    <dd>Whatever</dd>
-                                    <dt>City Name</dt>
-                                    <dd>Whatever</dd>
-                                    <dt>Created Date</dt>
-                                    <dd>Whatever</dd>
-                                    <dt>Update Date</dt>
-                                    <dd>Whatever</dd>
-                                </dl>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-danger">Delete</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div>
-            <ul class="pagination pagination-lg">
-                @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }),
-                            new PagedListRenderOptions {
-                                LiElementClasses = new string[] { "page-item" },
-                            })
-            </ul>
-        </div>
-
     </div>
+    @*Add Modal Ends Here*@
+
+    @*Edit Modal Starts From Here*@
+    <div class="modal fade" id="edit-modal" tabindex="-1" role="dialog" aria-labelledby="edit-modal-label" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="edit-modal-label">Edit City</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="Name" class="col-form-label">City Name : </label>
+                            <input name="Name" type="text" class="form-control border" id="Name">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancle</button>
+                    <button type="button" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    @*Edit Modal Ends Here*@
+
+    @*Details Modal Starts From Here*@
+    <div class="modal fade" id="details-modal" tabindex="-1" role="dialog" aria-labelledby="details-modal-label" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="details-modal-label">City Details</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <dl class="dl-horizontal">
+                                <dt>City Id</dt>
+                                <dd>Whatever</dd>
+                                <dt>City Name</dt>
+                                <dd>Whatever</dd>
+                                <dt>Created Date</dt>
+                                <dd>Whatever</dd>
+                                <dt>Update Date</dt>
+                                <dd>Whatever</dd>
+                            </dl>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    @*Details Modal Ends Here*@
+
+    @*Delete Modal Starts From Here*@
+    <div class="modal fade" id="delete-modal" tabindex="-1" role="dialog" aria-labelledby="delete-modal-label" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header alert alert-danger">
+                    <h5 class="modal-title" id="delete-modal-label">Are you sure you want to delte this city ?</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <dl class="dl-horizontal">
+                                <dt>City Id</dt>
+                                <dd>Whatever</dd>
+                                <dt>City Name</dt>
+                                <dd>Whatever</dd>
+                                <dt>Created Date</dt>
+                                <dd>Whatever</dd>
+                                <dt>Update Date</dt>
+                                <dd>Whatever</dd>
+                            </dl>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-danger">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    @*Delete Modal Ends Here*@
+
+    @*Pagination*@
+    <div>
+        <ul class="pagination pagination-lg">
+            @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }),
+                        new PagedListRenderOptions {
+                            LiElementClasses = new string[] { "page-item" },
+                        })
+        </ul>
+    </div>
+
+</div>
