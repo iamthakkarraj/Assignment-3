@@ -4,160 +4,179 @@
     ViewBag.Title = "Create";
 }
 
-<div class="py-4">
-
-    <h4>Add New Customer</h4>
-
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        <div class="row">
-
-            <div class="form-horizontal col-6">
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.EmailId, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.EmailId, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.EmailId, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.PhoneNo, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.PhoneNo, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.PhoneNo, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.DOB, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @*@Html.EditorFor(model => model.DOB, new { htmlAttributes = new { @class = "form-control" } })*@
-                        <input type="date" id="Customer_DOB" class="form-control" name="Customer.DOB" />
-                        @Html.ValidationMessageFor(model => model.DOB, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.IsActive, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.IsActive, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.IsActive, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="form-horizontal col-6">
-
-                <div class="form-group">
-                    @Html.Label("Country", htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.DropDownList("Country List", (List<SelectListItem>) ViewBag.CountryList, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.CityId, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="state-list" class="custom-control-label col-md-2">State</label>
-                    <div class="col-md-10">
-                        <select id="state-list" class="form-control">
-                            <option>Please Select Country First</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="city-list" class="custom-control-label col-md-2">City</label>
-                    <div class="col-md-10">
-                        <select id="city-list" class="form-control">
-                            <option>Please Select State First</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.CreatedDate, htmlAttributes: new { @class = "control-label col-md-8" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.CreatedDate, new { htmlAttributes = new { @class = "form-control", disabled = true } })
-                        @Html.ValidationMessageFor(model => model.CreatedDate, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.UpdatedDate, htmlAttributes: new { @class = "control-label col-md-8" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.UpdatedDate, new { htmlAttributes = new { @class = "form-control", disabled = true } })
-                        @Html.ValidationMessageFor(model => model.UpdatedDate, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        @Html.HiddenFor(model => model.CustomerId, new { htmlAttributes = new { @class = "form-control" } })
-                        <input type="submit" value="Create" class="btn btn-primary" />
-                    </div>
-                </div>
-
-            </div>
-
-        </div>
-    }
-
     <div>
-        @Html.ActionLink("Back to List", "Index")
+
+        @*Page Title*@        
+        <div class="d-flex justify-content-between py-4">
+            <h4 class="pt-3 mt-1">Add New Customer</h4>
+            <a href="/Customers/Index" class="btn btn-primary">Back To list > </a>
+        </div>
+        
+
+        @using (Html.BeginForm()) {
+            @Html.AntiForgeryToken()
+
+            <div class="d-flex justify-content-start pb-5">
+
+                <div class="col-4 mr-4 py-4 px-0 shadow ">
+
+                    <div class="ml-4">
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-12" })
+                            <div class="col-md-12">
+                                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="">
+                            @Html.LabelFor(model => model.EmailId, htmlAttributes: new { @class = "control-label col-md-12" })
+                            <div class="col-12">
+                                @Html.EditorFor(model => model.EmailId, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.EmailId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.PhoneNo, htmlAttributes: new { @class = "control-label col-md-12" })
+                            <div class="col-md-12">
+                                @Html.EditorFor(model => model.PhoneNo, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.PhoneNo, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.DOB, htmlAttributes: new { @class = "control-label col-md-12" })
+                            <div class="col-md-12">
+                                @*@Html.EditorFor(model => model.DOB, new { htmlAttributes = new { @class = "form-control" } })*@
+                                <input type="date" id="DOB" class="form-control" name="DOB" />
+                                @Html.ValidationMessageFor(model => model.DOB, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                            
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.IsActive, htmlAttributes: new { @class = "control-label col-md-12" })
+                            <div class="col-md-12">                                
+                                <div class="custom-control custom-checkbox">                                    
+                                    @Html.CheckBoxFor(model => model.IsActive, new { @class = "custom-control-input form-control" })
+                                    <label class="custom-control-label" for="IsActive">Is Active ?</label>
+                                </div>
+                                @Html.ValidationMessageFor(model => model.IsActive, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="col-4 py-4 px-0 shadow ">
+
+                    <div class="ml-4">
+
+                        <div class="form-group">
+                            @Html.Label("Country", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-12">
+                                @Html.DropDownList("Country List", (List<SelectListItem>)ViewBag.CountryList, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.CityId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="state-list" class="control-label col-md-2">State</label>
+                            <div class="col-md-12">
+                                <select id="state-list" class="form-control">
+                                    <option>Please Select Country First</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="cityId" class="control-label col-md-2">City</label>
+                            <div class="col-md-12">
+                                <select id="cityId" name="cityId" class="form-control">
+                                    <option>Please Select State First</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.CreatedDate, htmlAttributes: new { @class = "control-label col-md-8" })
+                            <div class="col-md-12">
+                                @Html.EditorFor(model => model.CreatedDate, new { htmlAttributes = new { @class = "form-control", disabled = true } })
+                                @Html.ValidationMessageFor(model => model.CreatedDate, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                                                
+                    </div>
+
+                </div>
+
+                <div class="col-4 ml-4 px-0">                    
+                    <div>
+                        <label>Current Address</label>
+                        @Html.ValidationMessageFor(model => model.CurrentAddress, "", new { @class = "text-danger" })
+                        @Html.TextAreaFor(model => model.CurrentAddress, new { @class = "shadow w-75 h-25 mb-5 p-3", style = "all:unset;" });
+                    </div>
+                    <div>
+                        <label>Permanent Address</label>
+                        @Html.ValidationMessageFor(model => model.PermanentAddress, "", new { @class = "text-danger" })
+                        @Html.TextAreaFor(model => model.PermanentAddress, new { @class = "shadow w-75 h-25 mb-5 p-3", style = "all:unset;" });
+                    </div>
+                    <div>
+                        @Html.HiddenFor(model => model.CustomerId, new { htmlAttributes = new { @class = "form-control" } })
+                        <input type="submit" value="Add +" class="btn btn-primary" />
+                    </div>
+                </div>
+
+            </div>
+        }
+
     </div>
 
-</div>
-@Scripts.Render("~/bundles/jquery")
 <script>
+
     $(document).ready(function () {
 
+        //AJAX Call To Get State List Of Selectecd State
         $('#Country_List').on("change", function () {
             var selectedCountry = $('#Country_List').val();
             $.ajax({
                 url: '/Customers/GetStateList/' + selectedCountry,
-                type: 'GET',                
+                type: 'GET',
                 contentType: 'application/json',
-                success: function (response) {                    
-                    $('#state-list').html('');                    
+                success: function (response) {
+                    $('#state-list').html('');
                     $('#state-list').append('<option value="Select">Select Your State</option>');
                     for (var i = 0; i < response.length; i++) {
                         debugger
                         $('#state-list').append('<option value="' + response[i].StateId + '">' + response[i].Name + '</option>');
-                    }                    
+                    }
                 }
             });
         });
 
+        //AJAX Call To Get City List Of Selectecd State
         $('#state-list').on("change", function () {
             var selectedState = $('#state-list').val();
             $.ajax({
                 url: '/Customers/GetCityList/' + selectedState,
-                type: 'GET',                
+                type: 'GET',
                 contentType: 'application/json',
-                success: function (response) {                    
-                    $('#city-list').html('');                    
-                    $('#city-list').append('<option value="Select">Select Your City</option>');
+                success: function (response) {
+                    $('#cityId').html('');
+                    $('#cityId').append('<option value="Select">Select Your City</option>');
                     for (var i = 0; i < response.length; i++) {
                         debugger
-                        $('#city-list').append('<option value="' + response[i].CityId + '">' + response[i].Name + '</option>');
-                    }                    
+                        $('#cityId').append('<option value="' + response[i].CityId + '">' + response[i].Name + '</option>');
+                    }
                 }
             });
         });
 
+        $('#IsActive').on('change', function () {
 
+        });
 
     })
 </script>

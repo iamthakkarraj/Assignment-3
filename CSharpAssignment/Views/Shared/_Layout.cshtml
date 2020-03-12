@@ -5,7 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")    
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    <script src="~/Scripts/main.js"></script>
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
@@ -13,7 +18,7 @@
     @Html.Partial("_Navbar")
 
     <section class="m-0 p-0">
-        <div class="d-flex justify-content-center">
+        <div class="container">
             @RenderBody()
         </div>
     </section>
@@ -21,10 +26,6 @@
 
     @Html.Partial("_Footer")
 
-    @Scripts.Render("~/bundles/jquery")
-    <script src="~/Scripts/main.js"></script>
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
-
+    
 </body>
 </html>

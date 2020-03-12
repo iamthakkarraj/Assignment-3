@@ -14,24 +14,18 @@ namespace CSharpAssignment.Database
     
     public partial class Customer
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Customer()
-        {
-            this.Addresses = new HashSet<Address>();
-        }
-    
         public int CustomerId { get; set; }
         public string Name { get; set; }
         public string EmailId { get; set; }
         public string PhoneNo { get; set; }
-        public System.DateTime? DOB { get; set; }
+        public string DOB { get; set; }
+        public Nullable<int> CityId { get; set; }
+        public string CurrentAddress { get; set; }
+        public string PermanentAddress { get; set; }
         public Nullable<bool> IsActive { get; set; }
         public System.DateTime CreatedDate { get; set; }
         public Nullable<System.DateTime> UpdatedDate { get; set; }
-        public Nullable<int> CityId { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Address> Addresses { get; set; }
         public virtual City City { get; set; }
     }
 }

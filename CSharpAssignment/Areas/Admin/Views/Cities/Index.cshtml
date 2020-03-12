@@ -15,7 +15,7 @@
     </div>
 
     @*Table Starts From Here*@
-    <table class="table table-striped" style="width:fit-content;">
+    <table class="table table-striped">
 
         @*Table Heading Starts From Here*@
         <tr>
@@ -29,9 +29,9 @@
             <tr>
                 <td class="text-center align-middle">@Html.DisplayFor(modelItem => item.Name)</td>
                 <td>
-                    <button onclick="GetDetails()" style="all:unset;" data-toggle="modal" data-target="#edit-modal"><i class="btn-sm btn-warning material-icons">create</i></button>
-                    <button onclick="GetDetails()" style="all:unset;" data-toggle="modal" data-target="#details-modal"><i class="btn-sm btn-info material-icons">reorder</i></button>
-                    <button onclick="GetDetails()" style="all:unset;" data-toggle="modal" data-target="#delete-modal"><i class="btn-sm btn-danger material-icons">delete</i></button>
+                    <button style="all:unset;" data-toggle="modal" data-target="#edit-modal"><i class="btn-sm btn-warning material-icons">create</i></button>
+                    <button style="all:unset;" data-toggle="modal" data-target="#details-modal"><i class="btn-sm btn-info material-icons">reorder</i></button>
+                    <button style="all:unset;" data-toggle="modal" data-target="#delete-modal"><i class="btn-sm btn-danger material-icons">delete</i></button>
                 </td>
             </tr>
         }

@@ -19,7 +19,7 @@
 
     @*Details Modal Starts From Here*@
     <div class="modal fade" id="details-modal" tabindex="-1" role="dialog" aria-labelledby="details-modal-label" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-xl mt-5" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="details-modal-label">Customer Details</h5>
@@ -28,28 +28,40 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form>
-                        <div class="form-group">
-                            <dl class="dl-horizontal">
-                                <dt>Customer Id</dt>
-                                <dd>Whatever</dd>
-                                <dt>Customer Name</dt>
-                                <dd>Whatever</dd>
-                                <dt>Customer Email-Id</dt>
-                                <dd>Whatever</dd>
-                                <dt>Phone No.</dt>
-                                <dd>Whatever</dd>
-                                <dt>Date Of Birth</dt>
-                                <dd>Whatever</dd>
-                                <dt>Status</dt>
-                                <dd>Whatever</dd>
-                                <dt>Created Date</dt>
-                                <dd>Whatever</dd>
-                                <dt>Update Date</dt>
-                                <dd>Whatever</dd>
-                            </dl>
-                        </div>
-                    </form>
+                    <div class="row">
+                        <dl class="col-4">
+                            <dt>Customer Id</dt>
+                            <dd id="details-modal-customer-id">Whatever</dd>
+                            <dt>Customer Name</dt>
+                            <dd id="details-modal-name">Whatever</dd>
+                            <dt>Customer Email-Id</dt>
+                            <dd id="details-modal-email"> Whatever</dd>
+                            <dt>Phone No.</dt>
+                            <dd id="details-modal-phone-no">Whatever</dd>
+                            <dt>Date Of Birth</dt>
+                            <dd id="details-modal-dob">Whatever</dd>
+                        </dl>
+                        <dl class="col-4">
+                            <dt>City</dt>
+                            <dd id="details-modal-city" >Whatever</dd>
+                            <dt>State</dt>
+                            <dd id="details-modal-state">Whatever</dd>
+                            <dt>Country</dt>
+                            <dd id="details-modal-country">Whatever</dd>
+                            <dt>Current Address</dt>
+                            <dd id="details-modal-current-address">Whatever</dd>
+                            <dt>Permanent Addres</dt>
+                            <dd id="details-modal-permanent-address">Whatever</dd>
+                        </dl>
+                        <dl class="col-4">
+                            <dt>Status</dt>
+                            <dd id="details-modal-status">Whatever</dd>
+                            <dt>Created Date</dt>
+                            <dd id="details-modal-created-date">Whatever</dd>
+                            <dt>Update Date</dt>
+                            <dd id="details-modal-updated-date">Whatever</dd>
+                        </dl>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -61,7 +73,7 @@
 
     @*Delete Modal Starts From Here*@
     <div class="modal fade" id="delete-modal" tabindex="-1" role="dialog" aria-labelledby="delete-modal-label" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-xl" role="document">
             <div class="modal-content">
                 <div class="modal-header alert alert-danger">
                     <h5 class="modal-title" id="delete-modal-label">Are you sure you want to delte this Customer ?</h5>
@@ -69,33 +81,47 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
+
                 <div class="modal-body">
-                    <form>
-                        <div class="form-group">
-                            <dl class="dl-horizontal">
-                                <dt>Customer Id</dt>
-                                <dd>Whatever</dd>
-                                <dt>Customer Name</dt>
-                                <dd>Whatever</dd>
-                                <dt>Customer Email-Id</dt>
-                                <dd>Whatever</dd>
-                                <dt>Phone No.</dt>
-                                <dd>Whatever</dd>
-                                <dt>Date Of Birth</dt>
-                                <dd>Whatever</dd>
-                                <dt>Status</dt>
-                                <dd>Whatever</dd>
-                                <dt>Created Date</dt>
-                                <dd>Whatever</dd>
-                                <dt>Update Date</dt>
-                                <dd>Whatever</dd>
-                            </dl>
-                        </div>
-                    </form>
+                    <div class="row">
+                        <dl class="col-4">
+                            <dt>Customer Id</dt>
+                            <dd id="delete-modal-customer-id">Whatever</dd>
+                            <dt>Customer Name</dt>
+                            <dd id="delete-modal-name">Whatever</dd>
+                            <dt>Customer Email-Id</dt>
+                            <dd id="delete-modal-email"> Whatever</dd>
+                            <dt>Phone No.</dt>
+                            <dd id="delete-modal-phone-no">Whatever</dd>
+                            <dt>Date Of Birth</dt>
+                            <dd id="delete-modal-dob">Whatever</dd>
+                        </dl>
+                        <dl class="col-4">
+                            <dt>City</dt>
+                            <dd id="delete-modal-city">Whatever</dd>
+                            <dt>State</dt>
+                            <dd id="delete-modal-state">Whatever</dd>
+                            <dt>Country</dt>
+                            <dd id="delete-modal-country">Whatever</dd>
+                            <dt>Current Address</dt>
+                            <dd id="delete-modal-current-address">Whatever</dd>
+                            <dt>Permanent Addres</dt>
+                            <dd id="delete-modal-permanent-address">Whatever</dd>
+                        </dl>
+                        <dl class="col-4">
+                            <dt>Status</dt>
+                            <dd id="delete-modal-status">Whatever</dd>
+                            <dt>Created Date</dt>
+                            <dd id="delete-modal-created-date">Whatever</dd>
+                            <dt>Update Date</dt>
+                            <dd id="delete-modal-updated-date">Whatever</dd>
+                        </dl>
+                    </div>
                 </div>
+
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-danger">Delete</button>
+                    <a href="" id="modal-button-delete" class="btn btn-danger">Delete</a>
                 </div>
             </div>
         </div>
@@ -113,3 +139,73 @@
     </div>
 
 </div>
+
+<script>
+
+    $(".button-details").click(function () {        
+        $.ajax({
+            url: '/Customers/Details/' + $(this).attr('data'),
+            type: "GET",
+            contentType: 'application/json',
+            success: function (response) {
+                $('#details-modal-customer-id').html(response.CustomerId);
+                $('#details-modal-name').html(response.Name);
+                $('#details-modal-dob').html(response.DOB);      
+                $('#details-modal-email').html(response.EmailId);
+                $('#details-modal-phone-no').html(response.PhoneNo);                
+                $('#details-modal-current-address').html(response.CurrentAddress);
+                $('#details-modal-permanent-address').html(response.PermanentAddress);
+                $('#details-modal-created-date').html(response._CreatedDate.toString());
+                $('#details-modal-updated-date').html(response._UpdatedDate);
+                $('#details-modal-city').html(response.CityName);
+                $('#details-modal-state').html(response.StateName);
+                $('#details-modal-country').html(response.CountryName);
+                if (response.IsActive == true) {
+                    $('#details-modal-status').html('<span class="p-2 w-25 badge badge-success">Active</span>');
+                } else {
+                    $('#details-modal-status').html('<span class="p-2 w-25 badge badge-danger">Not Active</span>');                    
+                }                
+            }
+        });
+    });
+
+    $(".button-delete").click(function () {        
+        $.ajax({
+            url: '/Customers/Details/' + $(this).attr('data'),
+            type: "GET",
+            contentType: 'application/json',
+            success: function (response) {
+                $('#delete-modal-customer-id').html(response.CustomerId);
+                $('#delete-modal-name').html(response.Name);
+                $('#delete-modal-dob').html(response.DOB);      
+                $('#delete-modal-email').html(response.EmailId);
+                $('#delete-modal-phone-no').html(response.PhoneNo);                
+                $('#delete-modal-current-address').html(response.CurrentAddress);
+                $('#delete-modal-permanent-address').html(response.PermanentAddress);
+                $('#delete-modal-created-date').html(response._CreatedDate.toString());
+                $('#delete-modal-updated-date').html(response._UpdatedDate);
+                $('#delete-modal-city').html(response.CityName);
+                $('#delete-modal-state').html(response.StateName);
+                $('#delete-modal-country').html(response.CountryName);
+                if (response.IsActive == true) {
+                    $('#delete-modal-status').html('<span class="p-2 w-25 badge badge-success">Active</span>');
+                } else {
+                    $('#delete-modal-status').html('<span class="p-2 w-25 badge badge-danger">Not Active</span>');                    
+                }
+                $('#modal-button-delete').attr('href', '/Customers/Delete/'+ response.CustomerId);
+            }
+        });
+    });
+
+    $("#modal-button-delete").click(function () {
+        $.ajax({
+            url: '/Customers/Delete/' + $(this).attr('data'),
+            type: "POST",
+            contentType: 'application/json',
+            success: function (response) {
+                $.toaster({ priority :'success', title :'', message :'Customer Deleted Successfully'});
+            }
+        })
+    });
+
+</script>

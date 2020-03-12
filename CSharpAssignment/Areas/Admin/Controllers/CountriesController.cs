@@ -15,18 +15,19 @@ namespace CSharpAssignment.Areas.Admin.Controllers {
             this.CountryServices = new CountryService();
         }
 
-        //[OutputCache(Duration = 60)]
+        [OutputCache(Duration = 60)]
         // GET: Country
         public ActionResult Index(int? page) {
             return View(this.CountryServices.GetAllCountries().ToPagedList(page ?? 1,4));
         }
 
+        [OutputCache(Duration = 60,VaryByParam = "id")]
         // GET: Country/Details/5
         public ActionResult Details(int id) {
             return View();
         }
 
-        // GET: Country/Create
+        // GET: Country/Create  
         public ActionResult Create() {
             return View();
         }

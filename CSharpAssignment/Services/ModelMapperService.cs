@@ -5,6 +5,7 @@ using System.Web;
 using AutoMapper;
 
 namespace CSharpAssignment.Services {
+
     public class ModelMapperService {
 
         /// <summary>
@@ -31,4 +32,5 @@ namespace CSharpAssignment.Services {
         }
 
     }
+
 }

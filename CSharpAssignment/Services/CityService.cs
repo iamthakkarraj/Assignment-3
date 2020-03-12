@@ -1,16 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using CSharpAssignment.Database;
 using CSharpAssignment.Models.Data;
 
 namespace CSharpAssignment.Services {
+
     public class CityService {
 
         CSharpAssignmentEntities DBContext;
 
+        /// <summary>
+        /// Initialize DBContext In Constructor
+        /// </summary>
         public CityService() {
             DBContext = new CSharpAssignmentEntities();
         }
@@ -36,6 +38,11 @@ namespace CSharpAssignment.Services {
 
         }
 
+        /// <summary>
+        /// Get List Of City By State Id
+        /// </summary>
+        /// <param name="id">Id Of State</param>
+        /// <returns>List Of CityModel</returns>
         public List<CityModel> GetAllCities(int id) {
 
             //Get Source Data Into DatabaseEntites
@@ -70,10 +77,64 @@ namespace CSharpAssignment.Services {
                         .FirstOrDefault());
         }
 
+        /// <summary>
+        /// Get SelectListItem List For City Drop Down State Wise With
+        /// Default City Selected 
+        /// </summary>
+        /// <param name="stateId">State Id</param>
+        /// <param name="selectedCityId">Id Of Default Selected City</param>
+        /// <returns>List Of SelectListItem</returns>
+        public List<SelectListItem> GetCityDropDownList(int stateId, int selectedCityId) {
+            //Get All City List From Database
+            List<CityModel> cityList = GetAllCities(stateId);
+
+            //Create Empty SelectListItem List
+            List<SelectListItem> cityDropDownList = new List<SelectListItem>();
+
+            //Add Each City As A SelectListItem In Drop Down List
+            foreach (CityModel city in cityList) {
+                cityDropDownList.Add(new SelectListItem() {
+                    Text = city.Name,
+                    Value = city.CityId.ToString(),
+                    Selected = (selectedCityId == city.CityId)
+                });
+            }
+
+            return cityDropDownList;
+        }
+
+        /// <summary>
+        /// Get SelectListItem List For City Drop Down
+        /// </summary>
+        /// <returns>List Of SelectListItem</returns>
         public List<SelectListItem> GetCityDropDownList() {
 
             //Get All City List From Database
-            List <CityModel> cityList = GetAllCities();
+            List<CityModel> cityList = GetAllCities();
+
+            //Create Empty SelectListItem List
+            List<SelectListItem> cityDropDownList = new List<SelectListItem>();
+
+            //Add Each City As A SelectListItem In Drop Down List
+            foreach (CityModel city in cityList) {
+                cityDropDownList.Add(new SelectListItem() {
+                    Text = city.Name,
+                    Value = city.CityId.ToString()
+                });
+            }
+
+            return cityDropDownList;
+        }
+
+        /// <summary>
+        /// Get SelectListItem List For City Drop Down State Wise
+        /// </summary>
+        /// <param name="stateId">State Id</param>
+        /// <returns>List Of SelectListItem</returns>
+        public List<SelectListItem> GetCityDropDownList(int stateId) {
+
+            //Get All City List From Database
+            List<CityModel> cityList = GetAllCities(stateId);
 
             //Create Empty SelectListItem List
             List<SelectListItem> cityDropDownList = new List<SelectListItem>();
@@ -90,4 +151,5 @@ namespace CSharpAssignment.Services {
         }
 
     }
+
 }

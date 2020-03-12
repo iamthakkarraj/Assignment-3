@@ -4,7 +4,7 @@
     ViewBag.Title = "CustomerModel";
 }
 
-<div class="col-12 col-md-4">
+<div class="col-md-4">
 
     @*Customer Card Starts From Here*@
     <div class="card mb-4">
@@ -35,11 +35,11 @@
             @*Customer Details Ends Here*@
 
             @*Edit Button*@
-            <a href="/Customer/Edit/@Model.CustomerId"><i class="btn-sm btn-warning material-icons">create</i></a>            
+            <a href="/Customers/Edit/@Model.CustomerId"><i class="btn-sm btn-warning material-icons">create</i></a>            
             @*Details Button*@
-            <button onclick="GetDetails()" style="all:unset;" data-toggle="modal" data-target="#details-modal"><i class="btn-sm btn-info material-icons">reorder</i></button>
+            <button class="button-details" data="@Model.CustomerId" style="all:unset;" data-toggle="modal" data-target="#details-modal"><i class="btn-sm btn-info material-icons">reorder</i></button>
             @*Delete Button*@
-            <button onclick="GetDetails()" style="all:unset;" data-toggle="modal" data-target="#delete-modal"><i class="btn-sm btn-danger material-icons">delete</i></button>
+            <button class="button-delete" data="@Model.CustomerId" style="all:unset;" data-toggle="modal" data-target="#delete-modal"><i class="btn-sm btn-danger material-icons">delete</i></button>
 
         </div>
         @*Card Body Ends Here*@

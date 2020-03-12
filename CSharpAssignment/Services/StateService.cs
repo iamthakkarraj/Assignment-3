@@ -12,6 +12,9 @@ namespace CSharpAssignment.Services {
 
         CSharpAssignmentEntities DBContext;
 
+        /// <summary>
+        /// Initialize DBContext In Constructor
+        /// </summary>
         public StateService() {
             DBContext = new CSharpAssignmentEntities();
         }
@@ -37,12 +40,17 @@ namespace CSharpAssignment.Services {
 
         }
 
-        public List<StateModel> GetAllStates(int id) {
+        /// <summary>
+        /// Get State List By Country Id
+        /// </summary>
+        /// <param name="countryId">Id Of The Country</param>
+        /// <returns>List<StateModel></returns>
+        public List<StateModel> GetAllStates(int countryId) {
 
             //Get Source Data Into DatabaseEntites
             List<State> source = DBContext
                                     .States
-                                    .Where(x => x.CountryId == id)
+                                    .Where(x => x.CountryId == countryId)
                                     .ToList();
 
             //Create BusinessEntites List
@@ -57,7 +65,25 @@ namespace CSharpAssignment.Services {
 
         }
 
-        public List<SelectListItem> GetStateDopDownList() {
+        /// <summary>
+        /// Returns State From Database Matching With Given Id
+        /// </summary>
+        /// <param name="id">State Id</param>
+        /// <returns>State Model</returns>
+        public StateModel GetState(int id) {
+            return ModelMapperService
+                    .Map<State, StateModel>(
+                        DBContext
+                        .States
+                        .Where(x => x.StateId == id)
+                        .FirstOrDefault());
+        }
+
+        /// <summary>
+        /// Get List of SelectListItem For State DropDown
+        /// </summary>
+        /// <returns>List<SelectListItem></returns>
+        public List<SelectListItem> GetStateDropDownList() {
 
             //Get All State List From Database
             List<StateModel> stateList = GetAllStates();
@@ -74,7 +100,35 @@ namespace CSharpAssignment.Services {
             }
 
             return stateDropDownList;
-        }        
+        }
+
+        /// <summary>
+        /// Get List of SelectListItem For State DropDown
+        /// </summary>
+        /// <param name="countryId">Id Of the Country</param>
+        /// <param name="selectedStateId">Id Of The State Which Will Be Set To Seleted By Default</param>
+        /// <returns>List<SelectListItem></returns>
+        public List<SelectListItem> GetStateDropDownList(int countryId, int selectedStateId) {
+
+            //Get All State List From Database
+            List<StateModel> stateList = GetAllStates(countryId);
+
+            //Create Empty SelectListItem List
+            List<SelectListItem> stateDropDownList = new List<SelectListItem>();
+
+            //Add Each State As A SelectListItem In Drop Down List
+            foreach (StateModel state in stateList) {
+                stateDropDownList.Add(new SelectListItem() {
+                    Text = state.Name,
+                    Value = state.StateId.ToString(),
+                    Selected = (selectedStateId == state.StateId)
+
+                });
+            }
+
+            return stateDropDownList;
+        }
+        
     }
 
 }

@@ -4,17 +4,14 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="d815eed3ad0644bda2b75dfc2b0af3eb" Name="Diagram1" ZoomLevel="82">
-        <EntityTypeShape EntityType="CSharpAssignmentModel.Address" Width="1.5" PointX="8.75" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="CSharpAssignmentModel.City" Width="1.5" PointX="4.75" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="CSharpAssignmentModel.Country" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="CSharpAssignmentModel.Customer" Width="1.5" PointX="6.75" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="CSharpAssignmentModel.State" Width="1.5" PointX="2.875" PointY="1.125" IsExpanded="true" />
-        <AssociationConnector Association="CSharpAssignmentModel.FK__Address__Custome__45F365D3" ManuallyRouted="false" />
+      <Diagram DiagramId="f6f7fbc959e846e1b9492c9c8e3523ad" Name="Diagram1" ZoomLevel="86">
+        <EntityTypeShape EntityType="CSharpAssignmentModel.City" Width="1.5" PointX="5.25" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CSharpAssignmentModel.Country" Width="1.5" PointX="0.75" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CSharpAssignmentModel.Customer" Width="1.5" PointX="7.5" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="CSharpAssignmentModel.State" Width="1.5" PointX="3" PointY="1.5" IsExpanded="true" />
         <AssociationConnector Association="CSharpAssignmentModel.FK__City__StateId__3E52440B" ManuallyRouted="false" />
+        <AssociationConnector Association="CSharpAssignmentModel.FK__Customer__CityId__4222D4EF" ManuallyRouted="false" />
         <AssociationConnector Association="CSharpAssignmentModel.FK__State__CountryId__3A81B327" ManuallyRouted="false" />
-        <AssociationConnector Association="CSharpAssignmentModel.FK__Customer__CityId__48CFD27E" ManuallyRouted="false" >
-        </AssociationConnector>
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

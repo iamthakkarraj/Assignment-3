@@ -145,12 +145,6 @@
     <Compile Include="Areas\Admin\Controllers\StatesController.cs" />
     <Compile Include="Controllers\CustomersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Global.asax.cs">
-      <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
-    <Compile Include="Database\Address.cs">
-      <DependentUpon>DatabaseContext.tt</DependentUpon>
-    </Compile>
     <Compile Include="Database\City.cs">
       <DependentUpon>DatabaseContext.tt</DependentUpon>
     </Compile>
@@ -178,16 +172,17 @@
     <Compile Include="Database\State.cs">
       <DependentUpon>DatabaseContext.tt</DependentUpon>
     </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
     <Compile Include="Models\Data\CityModel.cs" />
     <Compile Include="Models\Data\CountryModel.cs" />
     <Compile Include="Models\Data\CustomerModel.cs" />
-    <Compile Include="Models\Data\CustomerAddressModel.cs" />
     <Compile Include="Models\Data\StateModel.cs" />
     <Compile Include="Services\CityService.cs" />
     <Compile Include="Services\Constants.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\CountryService.cs" />
-    <Compile Include="Services\CustomerAddressService.cs" />
     <Compile Include="Services\CustomerService.cs" />
     <Compile Include="Services\ModelMapperService.cs" />
     <Compile Include="Services\StateService.cs" />
@@ -203,19 +198,19 @@
     <Content Include="Content\_bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\_bootstrap.min.css" />
-    <Content Include="favicon.ico" />
-    <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
     <Content Include="Database\DatabaseContext.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>DatabaseContext.Context.cs</LastGenOutput>
       <DependentUpon>DatabaseContext.edmx</DependentUpon>
+      <LastGenOutput>DatabaseContext.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Database\DatabaseContext.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>DatabaseContext.edmx</DependentUpon>
       <LastGenOutput>DatabaseContext.cs</LastGenOutput>
     </Content>
+    <Content Include="favicon.ico" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -239,13 +234,6 @@
     <Content Include="Scripts\esm\popper.js.map" />
     <Content Include="Scripts\esm\popper-utils.min.js.map" />
     <Content Include="Scripts\esm\popper-utils.js.map" />
-    <EntityDeploy Include="Database\DatabaseContext.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>DatabaseContext.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Database\DatabaseContext.edmx.diagram">
-      <DependentUpon>DatabaseContext.edmx</DependentUpon>
-    </Content>
     <Content Include="Areas\Admin\Views\web.config" />
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
@@ -255,6 +243,13 @@
     <Content Include="Areas\Admin\Views\Shared\_Footer.cshtml" />
     <Content Include="Areas\Admin\Views\Cities\Index.cshtml" />
     <Content Include="Areas\Admin\Views\States\Index.cshtml" />
+    <EntityDeploy Include="Database\DatabaseContext.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>DatabaseContext.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Database\DatabaseContext.edmx.diagram">
+      <DependentUpon>DatabaseContext.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -365,6 +360,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\CustomerModel.cshtml" />
     <Content Include="Views\Customers\Create.cshtml" />
+    <Content Include="Views\Customers\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />

@@ -15,12 +15,21 @@ namespace CSharpAssignment.Controllers {
 
         // GET: Customer
         public ActionResult Index(int? page) {
-            return View(CustomerServices.GetAllCustomers().ToPagedList(page ?? 1, 4));
+            return View(CustomerServices.GetAllCustomers().ToPagedList(page ?? 1, 6));
         }
 
         // GET: Customer/Details/5
-        public ActionResult Details(int id) {
-            return View(CustomerServices.GetCustomer(id));
+        public JsonResult Details(int id) {
+            CustomerModel customerModel = CustomerServices.GetCustomer(id);
+            CityModel customerCity = new CityService().GetCity(customerModel.CityId);
+            StateModel customerState = new StateService().GetState(customerCity.StateId ?? 1);
+            CountryModel customerCountry = new CountryService().GetCountry(customerState.CountryId ?? 1);
+            customerModel.CityName = customerCity.Name;
+            customerModel.StateName = customerState.Name;
+            customerModel.CountryName = customerCountry.Name;
+            customerModel._CreatedDate = customerModel.CreatedDate.ToString();
+            customerModel._UpdatedDate = customerModel.UpdatedDate.ToString();
+            return Json(customerModel, JsonRequestBehavior.AllowGet);
         }
 
         // GET: Customer/Create
@@ -34,50 +43,45 @@ namespace CSharpAssignment.Controllers {
         // POST: Customer/Create
         [HttpPost]
         public ActionResult Create(CustomerModel customerModel) {
+            customerModel.CreatedDate = DateTime.Today;
+            customerModel.UpdatedDate = null;
             CustomerServices.AddCustomer(customerModel);
             return RedirectToAction("Index");
-            try {                 
-            }
-            catch(Exception e) {
-                ViewBag.CountryList = new CountryService().GetCountryDropDownList();                
-                return View();
-            }
         }
 
         // GET: Customer/Edit/5
         public ActionResult Edit(int id) {
-            return View(CustomerServices.GetCustomer(id));
+
+            CustomerModel customerModel = CustomerServices.GetCustomer(id);
+            CityModel customerCity = new CityService().GetCity(customerModel.CityId);
+            StateModel customerState = new StateService().GetState(customerCity.StateId ?? 1);
+
+            ViewBag.CityList = new CityService().GetCityDropDownList(customerState.StateId, customerCity.CityId);
+            ViewBag.StateList = new StateService().GetStateDropDownList(customerState.CountryId ?? 1,customerState.StateId);
+            ViewBag.CountryList = new CountryService().GetCountryDropDownList(customerState.CountryId ?? 1);
+
+            return View(customerModel);
+
         }
 
-        // POST: Customer/Edit/5
+        // POST: Customer/Edit/5        
         [HttpPost]
-        public ActionResult Edit(CustomerModel customerModel) {
-            try {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch {
-                return View();
-            }
+        public ActionResult Edit(CustomerModel customerModel) {            
+            customerModel.UpdatedDate = DateTime.Today;
+            CustomerServices.UpdateCustomer(customerModel);
+            return RedirectToAction("Index");            
         }
 
         // GET: Customer/Delete/5
+        [HttpGet]
         public ActionResult Delete(int id) {
-            return View(CustomerServices.GetCustomer(id));
-        }
-
-        // POST: Customer/Delete/5
-        [HttpPost]
-        public ActionResult Delete(CustomerModel customerModel) {
             try {
-                CustomerServices.RemoveCustomer(customerModel.CustomerId);
+                CustomerServices.RemoveCustomer(id);                
                 return RedirectToAction("Index");
-            }
-            catch {
-                return View();
-            }
-        }
+            } catch {
+                return Json(false);
+            }            
+        }        
 
         public JsonResult GetStateList(int id) {
             return Json(new StateService().GetAllStates(id), JsonRequestBehavior.AllowGet);

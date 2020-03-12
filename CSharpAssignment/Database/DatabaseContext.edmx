@@ -4,15 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="CSharpAssignmentModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="Address">
-          <Key>
-            <PropertyRef Name="AddressId" />
-          </Key>
-          <Property Name="AddressId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Value" Type="nvarchar" MaxLength="256" Nullable="false" />
-          <Property Name="CustomerId" Type="int" />
-        </EntityType>
+      <Schema Namespace="CSharpAssignmentModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="City">
           <Key>
             <PropertyRef Name="CityId" />
@@ -40,8 +32,10 @@
           <Property Name="Name" Type="nvarchar" MaxLength="56" Nullable="false" />
           <Property Name="EmailId" Type="nvarchar" MaxLength="64" Nullable="false" />
           <Property Name="PhoneNo" Type="nvarchar" MaxLength="10" Nullable="false" />
-          <Property Name="DOB" Type="date" Nullable="false" />
+          <Property Name="DOB" Type="nvarchar" MaxLength="26" Nullable="false" />
           <Property Name="CityId" Type="int" />
+          <Property Name="CurrentAddress" Type="nvarchar" MaxLength="512" Nullable="false" />
+          <Property Name="PermanentAddress" Type="nvarchar" MaxLength="512" Nullable="false" />
           <Property Name="IsActive" Type="bit" />
           <Property Name="CreatedDate" Type="datetime" Nullable="false" />
           <Property Name="UpdatedDate" Type="datetime" />
@@ -56,18 +50,6 @@
           <Property Name="CreatedDate" Type="datetime" Nullable="false" />
           <Property Name="UpdateDate" Type="datetime" />
         </EntityType>
-        <Association Name="FK__Address__Custome__46E78A0C">
-          <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
-          <End Role="Address" Type="Self.Address" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Customer">
-              <PropertyRef Name="CustomerId" />
-            </Principal>
-            <Dependent Role="Address">
-              <PropertyRef Name="CustomerId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__City__StateId__3E52440B">
           <End Role="State" Type="Self.State" Multiplicity="0..1" />
           <End Role="City" Type="Self.City" Multiplicity="*" />
@@ -105,15 +87,10 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="CSharpAssignmentModelStoreContainer">
-          <EntitySet Name="Address" EntityType="Self.Address" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="City" EntityType="Self.City" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Country" EntityType="Self.Country" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="State" EntityType="Self.State" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__Address__Custome__46E78A0C" Association="Self.FK__Address__Custome__46E78A0C">
-            <End Role="Customer" EntitySet="Customer" />
-            <End Role="Address" EntitySet="Address" />
-          </AssociationSet>
           <AssociationSet Name="FK__City__StateId__3E52440B" Association="Self.FK__City__StateId__3E52440B">
             <End Role="State" EntitySet="State" />
             <End Role="City" EntitySet="City" />
@@ -127,19 +104,11 @@
             <End Role="State" EntitySet="State" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="CSharpAssignmentModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Address">
-          <Key>
-            <PropertyRef Name="AddressId" />
-          </Key>
-          <Property Name="AddressId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Value" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="CustomerId" Type="Int32" />
-          <NavigationProperty Name="Customer" Relationship="Self.FK__Address__Custome__45F365D3" FromRole="Address" ToRole="Customer" />
-        </EntityType>
         <EntityType Name="City">
           <Key>
             <PropertyRef Name="CityId" />
@@ -150,7 +119,7 @@
           <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="UpdateDate" Type="DateTime" Precision="3" />
           <NavigationProperty Name="State" Relationship="Self.FK__City__StateId__3E52440B" FromRole="City" ToRole="State" />
-          <NavigationProperty Name="Customers" Relationship="CSharpAssignmentModel.FK__Customer__CityId__48CFD27E" FromRole="City" ToRole="Customer" />
+          <NavigationProperty Name="Customers" Relationship="Self.FK__Customer__CityId__4222D4EF" FromRole="City" ToRole="Customer" />
         </EntityType>
         <EntityType Name="Country">
           <Key>
@@ -170,13 +139,14 @@
           <Property Name="Name" Type="String" MaxLength="56" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="EmailId" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="PhoneNo" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="DOB" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="DOB" Type="String" MaxLength="26" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CityId" Type="Int32" />
+          <Property Name="CurrentAddress" Type="String" MaxLength="512" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PermanentAddress" Type="String" MaxLength="512" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="IsActive" Type="Boolean" />
           <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Addresses" Relationship="Self.FK__Address__Custome__45F365D3" FromRole="Customer" ToRole="Address" />
-          <Property Name="CityId" Type="Int32" />
-          <NavigationProperty Name="City" Relationship="CSharpAssignmentModel.FK__Customer__CityId__48CFD27E" FromRole="Customer" ToRole="City" />
+          <NavigationProperty Name="City" Relationship="Self.FK__Customer__CityId__4222D4EF" FromRole="Customer" ToRole="City" />
         </EntityType>
         <EntityType Name="State">
           <Key>
@@ -190,18 +160,6 @@
           <NavigationProperty Name="Cities" Relationship="Self.FK__City__StateId__3E52440B" FromRole="State" ToRole="City" />
           <NavigationProperty Name="Country" Relationship="Self.FK__State__CountryId__3A81B327" FromRole="State" ToRole="Country" />
         </EntityType>
-        <Association Name="FK__Address__Custome__45F365D3">
-          <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
-          <End Role="Address" Type="Self.Address" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Customer">
-              <PropertyRef Name="CustomerId" />
-            </Principal>
-            <Dependent Role="Address">
-              <PropertyRef Name="CustomerId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__City__StateId__3E52440B">
           <End Role="State" Type="Self.State" Multiplicity="0..1" />
           <End Role="City" Type="Self.City" Multiplicity="*" />
@@ -211,6 +169,18 @@
             </Principal>
             <Dependent Role="City">
               <PropertyRef Name="StateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Customer__CityId__4222D4EF">
+          <End Role="City" Type="Self.City" Multiplicity="0..1" />
+          <End Role="Customer" Type="Self.Customer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="CityId" />
+            </Principal>
+            <Dependent Role="Customer">
+              <PropertyRef Name="CityId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -227,55 +197,29 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="CSharpAssignmentEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Addresses" EntityType="Self.Address" />
           <EntitySet Name="Cities" EntityType="Self.City" />
           <EntitySet Name="Countries" EntityType="Self.Country" />
           <EntitySet Name="Customers" EntityType="Self.Customer" />
           <EntitySet Name="States" EntityType="Self.State" />
-          <AssociationSet Name="FK__Address__Custome__45F365D3" Association="Self.FK__Address__Custome__45F365D3">
-            <End Role="Customer" EntitySet="Customers" />
-            <End Role="Address" EntitySet="Addresses" />
-          </AssociationSet>
           <AssociationSet Name="FK__City__StateId__3E52440B" Association="Self.FK__City__StateId__3E52440B">
             <End Role="State" EntitySet="States" />
             <End Role="City" EntitySet="Cities" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Customer__CityId__4222D4EF" Association="Self.FK__Customer__CityId__4222D4EF">
+            <End Role="City" EntitySet="Cities" />
+            <End Role="Customer" EntitySet="Customers" />
           </AssociationSet>
           <AssociationSet Name="FK__State__CountryId__3A81B327" Association="Self.FK__State__CountryId__3A81B327">
             <End Role="Country" EntitySet="Countries" />
             <End Role="State" EntitySet="States" />
           </AssociationSet>
-          <AssociationSet Name="FK__Customer__CityId__48CFD27E" Association="CSharpAssignmentModel.FK__Customer__CityId__48CFD27E">
-            <End Role="City" EntitySet="Cities" />
-            <End Role="Customer" EntitySet="Customers" />
-          </AssociationSet>
         </EntityContainer>
-        <Association Name="FK__Customer__CityId__48CFD27E">
-          <End Type="CSharpAssignmentModel.City" Role="City" Multiplicity="0..1" />
-          <End Type="CSharpAssignmentModel.Customer" Role="Customer" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="City">
-              <PropertyRef Name="CityId" />
-            </Principal>
-            <Dependent Role="Customer">
-              <PropertyRef Name="CityId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="CSharpAssignmentModelStoreContainer" CdmEntityContainer="CSharpAssignmentEntities">
-          <EntitySetMapping Name="Addresses">
-            <EntityTypeMapping TypeName="CSharpAssignmentModel.Address">
-              <MappingFragment StoreEntitySet="Address">
-                <ScalarProperty Name="AddressId" ColumnName="AddressId" />
-                <ScalarProperty Name="Value" ColumnName="Value" />
-                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Cities">
             <EntityTypeMapping TypeName="CSharpAssignmentModel.City">
               <MappingFragment StoreEntitySet="City">
@@ -300,12 +244,14 @@
           <EntitySetMapping Name="Customers">
             <EntityTypeMapping TypeName="CSharpAssignmentModel.Customer">
               <MappingFragment StoreEntitySet="Customer">
-                <ScalarProperty Name="CityId" ColumnName="CityId" />
                 <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="EmailId" ColumnName="EmailId" />
                 <ScalarProperty Name="PhoneNo" ColumnName="PhoneNo" />
                 <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="CityId" ColumnName="CityId" />
+                <ScalarProperty Name="CurrentAddress" ColumnName="CurrentAddress" />
+                <ScalarProperty Name="PermanentAddress" ColumnName="PermanentAddress" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
                 <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />

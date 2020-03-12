@@ -21,6 +21,9 @@
 .dl-horizontal dt {
     white-space: normal;
 }
+.shadow-md {
+    box-shadow: 4px 4px 32px 2px rgba(0,0,0,0.32);
+}
 
 /* Set width on the form input elements since they're 100% wide by default */
 input,

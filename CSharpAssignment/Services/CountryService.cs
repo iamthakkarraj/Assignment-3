@@ -7,6 +7,7 @@ using CSharpAssignment.Database;
 using CSharpAssignment.Models.Data;
 
 namespace CSharpAssignment.Services {
+
     public class CountryService {
 
         CSharpAssignmentEntities DBContext;
@@ -36,6 +37,15 @@ namespace CSharpAssignment.Services {
 
         }
 
+        public CountryModel GetCountry(int id) {
+            return ModelMapperService
+                    .Map<Country, CountryModel>(
+                    DBContext
+                    .Countries
+                    .Where(x => x.CountryId == id)
+                    .FirstOrDefault());
+        }
+
         public List<SelectListItem> GetCountryDropDownList() {
 
             //Get All City List From Database
@@ -55,5 +65,25 @@ namespace CSharpAssignment.Services {
             return countryDropDownList;
         }
 
+        public List<SelectListItem> GetCountryDropDownList(int id) {
+            //Get All City List From Database
+            List<CountryModel> countryList = GetAllCountries();
+
+            //Create Empty SelectListItem List
+            List<SelectListItem> countryDropDownList = new List<SelectListItem>();
+
+            //Add Each City As A SelectListItem In Drop Down List
+            foreach (CountryModel country in countryList) {
+                countryDropDownList.Add(new SelectListItem() {
+                    Text = country.Name,
+                    Value = country.CountryId.ToString(),
+                    Selected = (id == country.CountryId)
+                });
+            }
+
+            return countryDropDownList;
+        }
+
     }
+
 }
